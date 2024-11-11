@@ -1,113 +1,108 @@
+"use client";
+
 import Image from "next/image";
+import ai from "@/public/images/ai.jpeg";
+import Link from "next/link";
+import ProductCard from "./components/ProductCard";
+import { getServerSession } from "next-auth";
 
+import { Metadata } from "next";
+
+// import HeavyComponent from "./components/HeavyComponent";
+import { useState } from "react";
+import { authOptions } from "./api/auth/authOptions";
+// import dynamic from "next/dynamic";
+// const HeavyComponent = dynamic(() => import("./components/HeavyComponent"), {
+//   ssr: false,
+//   loading: () => <p>Loading</p>,
+// });
+// import _ from "lodash";
+
+/* Dahsboard */
+// export default async function Home() {
+//   const session = await getServerSession(authOptions);
+
+//   return (
+//     <>
+//       <main className="relative h-screen">
+//         <div className="flex space-x-5 items-center">
+//           <h1 className="m-0 font-monaco">
+//             Hello{" "}
+//             {session && (
+//               <span className="text-blue-500">{session.user!.name}</span>
+//             )}
+//           </h1>
+//           <Link href="/users">Users</Link>
+//           <ProductCard />
+//         </div>
+
+//         {/* Optimization */}
+//         <div className="flex space-x-5 mt-10">
+//           <Image src={ai} alt="ai" />
+//           {/* <Image
+//             src="https://bit.ly/react-cover"
+//             alt="react_typescript"
+//             // width={300}
+//             // height={170}
+//             fill
+//             // style={{ objectFit: "cover" }}
+//             className="object-cover"
+//             sizes="(max-width: 768px) 100vw, (max-dith: 1200px) 50vw, 33vw"
+//             quality={100}
+//             priority
+//           /> */}
+//         </div>
+//       </main>
+//     </>
+//   );
+// }
+
+/* Lazy Loading */
 export default function Home() {
+  //   const [isVisible, setVisible] = useState(false);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <main className="relative h-screen">
+        {/* Heavy Component */}
+        {/* <button
+          className="btn btn-success mt-5"
+          onClick={() => setVisible(true)}
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          SHOW
+        </button>
+        {isVisible && <HeavyComponent />} */}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        {/* lodash */}
+        <button
+          className="btn btn-success mt-5"
+          onClick={async () => {
+            const _ = (await import("lodash")).default;
+            const users = [{ name: "c" }, { name: "b" }, { name: "a" }];
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+            const sorted = _.orderBy(users, ["name"]);
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+            console.log(sorted);
+          }}
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          SHOW
+        </button>
+      </main>
+    </>
   );
 }
+
+// export const metadata: Metadata = {
+//   title: "meta_title",
+//   description: "meta_description",
+// };
+
+/* Generate metadata dynamically */
+// export async function generateMetadata(): Promise<Metadata> {
+//   const sample = await fetch("");
+
+//   return {
+//     title: "sample.title", // sample only, without qoutes
+//     description: "sample.description", // sample only, without qoutes
+//   };
+// }

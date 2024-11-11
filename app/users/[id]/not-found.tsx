@@ -1,0 +1,8 @@
+const UserNotFoundPage = () => {
+  return (
+    <div className="flex items-center justify-center v-screen h-screen">
+      This user doesn&apos;t exist.
+    </div>
+  );
+};
+export default UserNotFoundPage;
